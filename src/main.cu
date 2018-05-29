@@ -40,7 +40,7 @@ int main()
   cudaMemcpy( va.data(), dev_a
             , va.size() * sizeof(float), cudaMemcpyDeviceToHost);
 
-  for(auto& e : vb) cout << e << '\n';
+  for(auto& e : va) cout << e << '\n';
 
   return 0;
 }
