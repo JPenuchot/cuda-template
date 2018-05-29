@@ -37,10 +37,10 @@ int main()
 
   cu_add(dev_a, dev_b, dev_a, va.size());
 
-  cudaMemcpy( dev_a, va.data()
+  cudaMemcpy( va.data(), dev_a
             , va.size() * sizeof(float), cudaMemcpyDeviceToHost);
 
-  for(auto& e : va) cout << e << '\n';
+  for(auto& e : vb) cout << e << '\n';
 
   return 0;
 }
