@@ -4,9 +4,19 @@
 
 #include <cuda.h>
 
-#include "funcs.hpp"
-
 using namespace std;
+
+template<typename T>
+__global__ void vadd(T* a, T* b, T* dest)
+{
+  dest[threadIdx.x] = a[threadIdx.x] + b[threadIdx.x];
+}
+
+template<typename T>
+void cu_add(T* a, T* b, T* dest, size_t size)
+{
+  vadd<<<1, size>>>(a, b, dest);
+}
 
 int main()
 {
