@@ -8,8 +8,6 @@
 
 using namespace std;
 
-namespace aze::t {};
-
 int main()
 {
   vector<float> va(100);
