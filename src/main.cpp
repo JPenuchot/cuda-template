@@ -2,21 +2,13 @@
 #include <numeric>
 #include <vector>
 
-#include <cuda.h>
+#include <cuda_runtime_api.h>
+
+#include "func.hpp"
 
 using namespace std;
 
-template<typename T>
-__global__ void vadd(T* a, T* b, T* dest)
-{
-  dest[threadIdx.x] = a[threadIdx.x] + b[threadIdx.x];
-}
-
-template<typename T>
-void cu_add(T* a, T* b, T* dest, size_t size)
-{
-  vadd<<<1, size>>>(a, b, dest);
-}
+namespace aze::t {};
 
 int main()
 {
@@ -29,8 +21,8 @@ int main()
   float* dev_a = nullptr;
   float* dev_b = nullptr;
 
-  cudaMalloc(&dev_a, va.size() * sizeof(float));
-  cudaMalloc(&dev_b, vb.size() * sizeof(float));
+  cudaMalloc((void**)&dev_a, va.size() * sizeof(float));
+  cudaMalloc((void**)&dev_b, vb.size() * sizeof(float));
 
   cudaMemcpy( dev_a, va.data()
             , va.size() * sizeof(float)
@@ -39,7 +31,6 @@ int main()
   cudaMemcpy( dev_b, vb.data()
             , vb.size() * sizeof(float)
             , cudaMemcpyHostToDevice);
-
 
   cu_add(dev_a, dev_b, dev_a, va.size());
 
