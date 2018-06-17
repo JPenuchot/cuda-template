@@ -5,7 +5,9 @@ project(Proj)
 
 find_package(CUDA REQUIRED)
 
-set(CUDA_HOST_COMPILER "clang++-4.0")
+set(CMAKE_C_COMPILER   "gcc-8")
+set(CMAKE_CXX_COMPILER "g++-8")
+set(CUDA_HOST_COMPILER "g++-6")
 
 set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG}   -O0")
