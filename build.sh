@@ -19,4 +19,3 @@ function build_for_type
 
 build_for_type Release
 build_for_type Debug
-
